@@ -1,27 +1,7 @@
-const express = require("express");
 const mysql = require("mysql2");
 const inquirer = require("inquirer");
 const db = require("./db");
-
-const PORT = process.env.PORT || 3001;
-const app = express();
-
-// Express middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-
-// Connect to database
-const db = mysql.createConnection(
-  {
-    host: "localhost",
-    // MySQL username,
-    user: "root",
-    // TODO: Add MySQL password here
-    password: "",
-    database: "",
-  },
-  console.log(``)
-);
+require("console.table");
 
 // Function to start the application
 async function startApp() {
@@ -34,8 +14,10 @@ async function startApp() {
     },
   ]);
 
+  //TODO: Add Logic for each scenario
   switch (action) {
     case "View all departments":
+      viewAllDepts();
       break;
     case "View all roles":
       break;
@@ -53,6 +35,13 @@ async function startApp() {
       console.log("Goodbye!");
       process.exit();
   }
+}
+
+function viewAllDepts() {
+  db.findDepartments().then(([departments]) => {
+    console.table(departments);
+    startApp();
+  });
 }
 
 // Start the application
