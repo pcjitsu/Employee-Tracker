@@ -20,6 +20,7 @@ async function startApp() {
       viewAllDepts();
       break;
     case "View all roles":
+      viewAllRoles();
       break;
     case "View all employees":
       break;
@@ -42,6 +43,12 @@ function viewAllDepts() {
     console.table(departments);
     startApp();
   });
+  function viewAllRoles() {
+    db.findRoles().then(([roles]) => {
+      console.table(roles);
+      startApp();
+    });
+  }
 }
 
 // Start the application
