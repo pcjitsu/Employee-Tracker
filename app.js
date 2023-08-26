@@ -43,6 +43,7 @@ function viewAllDepts() {
     console.table(departments);
     startApp();
   });
+
   function viewAllRoles() {
     db.findRoles().then(([roles]) => {
       console.table(roles);
