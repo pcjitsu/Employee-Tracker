@@ -23,8 +23,10 @@ async function startApp() {
       viewAllRoles();
       break;
     case "View all employees":
+      viewAllEmployee();
       break;
     case "Add a department":
+      addDepartment();
       break;
     case "Add a role":
       break;
@@ -43,13 +45,26 @@ function viewAllDepts() {
     console.table(departments);
     startApp();
   });
+}
 
-  function viewAllRoles() {
-    db.findRoles().then(([roles]) => {
-      console.table(roles);
-      startApp();
-    });
-  }
+function viewAllRoles() {
+  db.findRoles().then(([roles]) => {
+    console.table(roles);
+    startApp();
+  });
+}
+
+function viewAllEmployee() {
+  db.findEmployee().then(([employees]) => {
+    console.table(employees);
+    startApp();
+  });
+}
+function addDepartment() {
+  db.addDepartment().then(([newDepartment]) => {
+    console.table(newDepartment);
+    startApp();
+  });
 }
 
 // Start the application
