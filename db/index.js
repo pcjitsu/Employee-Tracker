@@ -14,19 +14,13 @@ class DB {
   findEmployee() {
     return this.connection.promise().query("SELECT * FROM employee;");
   }
-  addDepartment() {
-    const { department } = inquirer.prompt({
-      type: "input",
-      name: "department",
-      message: "What is the new Department name?",
-    });
+  addDepartment(name) {
+    return this.connection.promise().query("INSERT INTO department SET ?", name);
   }
 }
 
 module.exports = new DB(connection);
 
-// WHEN I choose to add a department
-// THEN I am prompted to enter the name of the department and that department is added to the database
 // WHEN I choose to add a role
 // THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database
 // WHEN I choose to add an employee

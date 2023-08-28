@@ -61,10 +61,25 @@ function viewAllEmployee() {
   });
 }
 function addDepartment() {
-  db.addDepartment().then(([newDepartment]) => {
-    console.table(newDepartment);
-    startApp();
-  });
+  inquirer
+    .prompt({
+      type: "input",
+      name: "name",
+      message: "What is the new Department name?",
+    })
+    .then((name) => {
+      db.addDepartment(name);
+    })
+    .then(() => {
+      startApp();
+    })
+    .catch((err) => {
+      return console.log(err);
+    });
+  // .then(() => {
+  //   // console.table(newDepartment);
+  //   startApp();
+  // });
 }
 
 // Start the application
