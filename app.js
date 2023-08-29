@@ -29,6 +29,7 @@ async function startApp() {
       addDepartment();
       break;
     case "Add a role":
+      addRole();
       break;
     case "Add an employee":
       break;
@@ -76,10 +77,27 @@ function addDepartment() {
     .catch((err) => {
       return console.log(err);
     });
-  // .then(() => {
-  //   // console.table(newDepartment);
-  //   startApp();
-  // });
+}
+function addRole() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "title",
+        message: "What is the title?",
+      },
+      { type: "input", name: "salary", message: "What is the salary?" },
+      { type: "input", name: "department_id", message: "What is the new department id?" },
+    ])
+    .then((title, salary, department_id) => {
+      db.addRole(title, salary, department_id);
+    })
+    .then(() => {
+      startApp();
+    })
+    .catch((err) => {
+      return console.log(err);
+    });
 }
 
 // Start the application
