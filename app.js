@@ -89,8 +89,8 @@ function addRole() {
       { type: "input", name: "salary", message: "What is the salary?" },
       { type: "input", name: "department_id", message: "What is the new department id?" },
     ])
-    .then((title, salary, department_id) => {
-      db.addRole(title, salary, department_id);
+    .then((role) => {
+      db.addRole(role);
     })
     .then(() => {
       startApp();
