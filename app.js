@@ -35,6 +35,7 @@ async function startApp() {
       addEmployee();
       break;
     case "Update an employee role":
+      updateEmployee();
       break;
     case "Exit":
       console.log("Goodbye!");
@@ -115,6 +116,29 @@ function addEmployee() {
     ])
     .then((employee) => {
       db.addEmployee(employee);
+    })
+    .then(() => {
+      startApp();
+    })
+    .catch((err) => {
+      return console.log(err);
+    });
+}
+
+function updateEmployee() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "first_name",
+        message: "What is the first name?",
+      },
+      { type: "input", name: "last_name", message: "What is the last name?" },
+      { type: "input", name: "role_id", message: "What is the new role id" },
+      { type: "input", name: "emplyee_id", message: "What is the employee id" },
+    ])
+    .then((employee) => {
+      db.updateEmployee(employee);
     })
     .then(() => {
       startApp();
