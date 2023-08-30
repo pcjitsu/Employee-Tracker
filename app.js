@@ -128,14 +128,8 @@ function addEmployee() {
 function updateEmployee() {
   inquirer
     .prompt([
-      {
-        type: "input",
-        name: "first_name",
-        message: "What is the first name?",
-      },
-      { type: "input", name: "last_name", message: "What is the last name?" },
-      { type: "input", name: "role_id", message: "What is the new role id" },
-      { type: "input", name: "emplyee_id", message: "What is the employee id" },
+      { type: "input", name: "newRoleId", message: "What is the new role id" },
+      { type: "input", name: "emplyeeid", message: "What is the employee id" },
     ])
     .then((employee) => {
       db.updateEmployee(employee);
