@@ -32,6 +32,7 @@ async function startApp() {
       addRole();
       break;
     case "Add an employee":
+      addEmployee();
       break;
     case "Update an employee role":
       break;
@@ -100,5 +101,27 @@ function addRole() {
     });
 }
 
+function addEmployee() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "first_name",
+        message: "What is the first name?",
+      },
+      { type: "input", name: "last_name", message: "What is the last name?" },
+      { type: "input", name: "role_id", message: "What is the role id" },
+      { type: "input", name: "manager_id", message: "What is the manager id" },
+    ])
+    .then((employee) => {
+      db.addEmployee(employee);
+    })
+    .then(() => {
+      startApp();
+    })
+    .catch((err) => {
+      return console.log(err);
+    });
+}
 // Start the application
 startApp();
