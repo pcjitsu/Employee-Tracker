@@ -81,6 +81,9 @@ function addDepartment() {
     });
 }
 function addRole() {
+  db.findDepartments().then(([departments]) => {
+    console.table(departments);
+  });
   inquirer
     .prompt([
       {
