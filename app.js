@@ -81,9 +81,14 @@ function addDepartment() {
     });
 }
 function addRole() {
-  db.findDepartments().then(([departments]) => {
-    console.table(departments);
-  });
+  db.findDepartments().then(([rows]) => {
+    let departments = rows;
+    const departmentChoices = departments.map(
+      ({id, name}) => ({
+      name: name,
+      value: id
+    })
+  );
   inquirer
     .prompt([
       {
@@ -92,7 +97,7 @@ function addRole() {
         message: "What is the title?",
       },
       { type: "input", name: "salary", message: "What is the salary?" },
-      { type: "input", name: "department_id", message: "What is the new department id?" },
+      { type: "list", name: "department", message: "What is the new department", choices: departmentChoices }
     ])
     .then((role) => {
       db.addRole(role);
@@ -103,7 +108,7 @@ function addRole() {
     .catch((err) => {
       return console.log(err);
     });
-}
+  });
 
 function addEmployee() {
   inquirer
@@ -143,6 +148,7 @@ function updateEmployee() {
     .catch((err) => {
       return console.log(err);
     });
+}
 }
 // Start the application
 startApp();
