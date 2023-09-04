@@ -111,6 +111,14 @@ function addRole() {
   });
 
 function addEmployee() {
+  db.findRoles().then(([rows]) => {
+    let roles = rows;
+    const roleChoices = roles.map(
+      ({id, name}) => ({
+      name: name,
+      value: id
+    })
+  );
   inquirer
     .prompt([
       {
@@ -119,7 +127,8 @@ function addEmployee() {
         message: "What is the first name?",
       },
       { type: "input", name: "last_name", message: "What is the last name?" },
-      { type: "input", name: "role_id", message: "What is the role id" },
+      { type: "list", name: "role_id", message: "What is the role?", choices: roleChoices
+     },
       { type: "input", name: "manager_id", message: "What is the manager id" },
     ])
     .then((employee) => {
