@@ -109,7 +109,7 @@ function addRole() {
       return console.log(err);
     });
   });
-
+}
 function addEmployee() {
   db.findRoles().then(([rows]) => {
     let roles = rows;
@@ -141,7 +141,7 @@ function addEmployee() {
       return console.log(err);
     });
 });
-
+}
 
 function updateEmployee() {
   inquirer
@@ -158,7 +158,6 @@ function updateEmployee() {
     .catch((err) => {
       return console.log(err);
     });
-}
 };
 // Start the application
 startApp();
