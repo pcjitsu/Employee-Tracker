@@ -140,7 +140,8 @@ function addEmployee() {
     .catch((err) => {
       return console.log(err);
     });
-}
+});
+
 
 function updateEmployee() {
   inquirer
@@ -158,6 +159,6 @@ function updateEmployee() {
       return console.log(err);
     });
 }
-}
+};
 // Start the application
 startApp();
