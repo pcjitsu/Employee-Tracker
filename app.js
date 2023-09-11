@@ -147,9 +147,10 @@ function updateEmployee() {
   inquirer
     .prompt([
       { type: "input", name: "newRoleId", message: "What is the new role id" },
-      { type: "input", name: "emplyeeid", message: "What is the employee id" },
+      { type: "input", name: "employee_Id", message: "What is the employee id" },
     ])
     .then((employee) => {
+      console.log(employee)
       db.updateEmployee(employee);
     })
     .then(() => {
